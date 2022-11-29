@@ -1,0 +1,72 @@
+#Pull an image
+docker pull redis
+
+#Images pulled
+docker images
+
+#Pull and run an image
+docker run redis
+
+#Pull and Run an image of particular version
+docker run redis:4.0.6
+
+#Pods that are running
+docker ps
+
+#Get the pod or container ID
+docker ps -d redis
+docker ps -d redis:4.0.6
+
+#Stop the pod
+docker stop 2342145123
+
+#Pod that want to restart
+docker start 2342145123
+
+#All pods that are/were running
+docker ps -a
+
+#Run image on particualr container port and host port
+docker run -p6000:6879 redis 
+
+#Logs producing by the pod/container
+docker logs containerID
+
+#Every container/pod has ID and name
+#Give a name to the container while running the image
+docker run -p6000:6879 --name red-monk redis
+
+#Go to the directory of the container (Interacting terminal)
+docker exec -it <containerID/containername> /bin/bash
+
+#Exit from the terminal
+exit
+
+#To see the docker network pods/containers
+docker network ls
+
+#Create a network in docker
+docker network create mongo-network
+
+#Realtime creating container for mongoDB(e = environment variables)
+docker run -d \
+-p 27017:27017 \
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+-e MONGO_INITDB_ROOT_PASSWORD=password \
+--name mongoDB \
+--net mongo-network \
+mongo
+
+#docker compose
+docker-compose -f mongo.yml up
+docker-compose -f mongo.yml down
+
+#Build the image
+docker build -t  my-app:1.0
+
+#Remove the containerId
+docker rm containerID
+
+#Remove the image
+docker rmi imageId
+
